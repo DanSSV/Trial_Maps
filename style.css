@@ -1,0 +1,11 @@
+#map { 
+    height: 500px;
+}
+.loc {
+  width: 50%;
+  margin: 0 auto;
+  height: 500px;
+}
+h1 {
+    font-size: 50px;
+}

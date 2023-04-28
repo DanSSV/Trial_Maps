@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trial Maps</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+      crossorigin=""
+    ></script>
+  </head>
+
+  <body>
+    <div class="loc">
+      <div id="map"></div>
+    </div>
+    <h1>TRIsakay</h1>
+
+    <script>
+      var map = L.map("map").setView([14.954, 120.8963], 13);
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution:
+          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      }).addTo(map);
+
+      map.on("locationfound", onLocationFound);
+      map.on("locationerror", onLocationError);
+      map.locate({ setView: true, maxZoom: 13, enableHighAccuracy: true });
+
+      function onLocationFound(e) {
+        var marker = L.marker(e.latlng).addTo(map);
+        marker.bindPopup("You are here!").openPopup();
+      }
+
+      function onLocationError(e) {
+        alert(e.message);
+      }
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          function (position) {
+            map.setView(
+              [position.coords.latitude, position.coords.longitude],
+              13
+            );
+          },
+          function () {
+            map.setView([14.954, 120.8963], 13);
+          }
+        );
+      } else {
+        map.setView([14.954, 120.8963], 13);
+      }
+
+      var newMarker;
+      var routePolyline;
+
+      map.on("dblclick", function (e) {
+        if (newMarker) {
+          map.removeLayer(newMarker);
+        }
+        if (routePolyline) {
+          map.removeLayer(routePolyline);
+        }
+        newMarker = L.marker(e.latlng).addTo(map);
+        var myLocation = map.getCenter();
+        var markerLocation = newMarker.getLatLng();
+        var distance = myLocation.distanceTo(markerLocation) / 1000;
+        newMarker
+          .bindPopup("Distance: " + distance.toFixed(2) + " km")
+          .openPopup();
+        var waypoints = [
+          L.latLng(myLocation.lat, myLocation.lng),
+          L.latLng(markerLocation.lat, markerLocation.lng),
+        ];
+        L.Routing.control({
+          waypoints: waypoints,
+          routeWhileDragging: true,
+          lineOptions: {
+            styles: [{ color: "blue", weight: 6 }],
+          },
+          createMarker: function () {
+            return null;
+          },
+        })
+          .addTo(map)
+          .on("routesfound", function (e) {
+            var route = e.routes[0];
+            routePolyline = L.polyline(route.coordinates[0], {
+              color: "blue",
+              weight: 6,
+              opacity: 0.7,
+            }).addTo(map);
+          });
+      });
+    </script>
+  </body>
+</html>
