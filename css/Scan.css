@@ -1,0 +1,83 @@
+.vid {
+  width: 100%;
+  margin: 0 auto;
+  height: 400px;
+}
+#preview {
+  /* height: 400px;
+  margin-top: 20px; */
+  
+}
+#result {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+.scan {
+  display: flex;
+  justify-content: center;
+  
+}
+.inputs {
+    margin-top: 10px;
+    margin-left: 55px;
+}
+.next {
+  width: 137px;
+  height: 43px;
+  border-radius: 10px;
+  background-color: #273b4a; 
+  border: none; 
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 30px;
+}
+.back {
+    width: 137px;
+  height: 43px;
+  border-radius: 10px;
+  background-color: #273b4a; 
+  border: none; 
+  color: white; 
+  font-size: 16px; 
+  cursor: pointer; 
+  margin-top: 30px;
+  margin-left: 10px;
+}
+#scannedContent {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  background-color: #eee;
+  padding: 20px;
+  margin: 10px 2px;
+  width: 80%;
+}
+label {
+  font-size: 24px;
+  font-weight: bold;
+  display: block;
+
+}
+input[type="text"] {
+  font-size: 24px;
+  /* padding: 15px; */
+  width: 80%;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(to bottom, #073e5d, #0bda73);
+  background-repeat: no-repeat;
+  font-family: "Inter", sans-serif;
+  overflow: hidden;
+}

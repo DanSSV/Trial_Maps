@@ -1,0 +1,54 @@
+#map { 
+    height: 500px;
+    margin-top: 20px;
+}
+.loc {
+  width: 100%;
+  margin: 0 auto;
+  height: 500px;
+}
+.info {
+  display: flex; justify-content: center;
+}
+h1 {
+    font-size: 50px;
+    color: white !important;
+    font-size: 20px !important;
+    margin-right: 20px;
+    margin-left: 20px;
+    padding-top: 10px;
+    display: inline-block;
+}
+.btn-primary{
+  margin-left: 50%;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(to bottom, #073e5d, #0bda73);
+  background-repeat: no-repeat;
+  font-family: "Inter", sans-serif;
+  overflow: hidden;
+}
+.backbtn {
+  display: flex;
+  justify-content: center;
+}
+
+.back {
+  width: 137px;
+  height: 43px;
+  border-radius: 10px;
+  background-color: #273B4A; 
+  border: none; 
+  color: white; 
+  font-size: 16px; 
+  cursor: pointer; 
+  margin-top: 80px;
+}
